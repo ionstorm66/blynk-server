@@ -75,7 +75,7 @@ class ArgumentsParser {
             if (Files.exists(augDirPath)) {
                 try (InputStream augFolder = Files.newInputStream(augDirPath)) {
                     if (augFolder != null) {
-                        ServerProperties.load(augFolder);
+                        Properties.load(augFolder);
                     }
                 } catch (Exception e) {
                     throw new RuntimeException("Error getting properties file : " + propertiesFile, e);
