@@ -30,7 +30,7 @@ class ArgumentsParser {
         options.addOption(HARDWARE_PORT_OPTION, true, "Hardware server port.")
                .addOption(APPLICATION_PORT_OPTION, true, "Application server port.")
                .addOption(WORKER_THREADS_OPTION, true, "Server worker threads.")
-               .addOption(DATA_FOLDER_OPTION, true, "Folder where user profiles will be stored.");
+               .addOption(DATA_FOLDER_OPTION, true, "Folder where user profiles will be stored.")
                .addOption(PROPERTIES_FILE_OPTION, true, "Location of server.properties is stored.");
     }
 
