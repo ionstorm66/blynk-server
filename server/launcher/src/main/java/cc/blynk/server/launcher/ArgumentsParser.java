@@ -48,7 +48,7 @@ class ArgumentsParser {
         String appPort = cmd.getOptionValue(APPLICATION_PORT_OPTION);
         String workerThreadsString = cmd.getOptionValue(WORKER_THREADS_OPTION);
         String dataFolder = cmd.getOptionValue(DATA_FOLDER_OPTION);
-        String propertiesFile = cmd.getOptionValue(PROPERTIES_FILE_OPTION,);
+        String propertiesFile = cmd.getOptionValue(PROPERTIES_FILE_OPTION);
 
         if (hardPort != null) {
             ParseUtil.parseInt(hardPort);
