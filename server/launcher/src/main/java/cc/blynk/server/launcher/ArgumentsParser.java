@@ -1,7 +1,6 @@
 package cc.blynk.server.launcher;
 
 import cc.blynk.utils.ParseUtil;
-import cc.blynk.utils.FileLoaderUtil;
 import org.apache.commons.cli.BasicParser;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.Options;
@@ -76,7 +75,7 @@ class ArgumentsParser {
             if (Files.exists(augDirPath)) {
                 try (InputStream augFolder = Files.newInputStream(augDirPath)) {
                     if (augFolder != null) {
-                        FileLoaderUtil.load(augFolder);
+                        ServerProperties.load(augFolder);
                     }
                 } catch (Exception e) {
                     throw new RuntimeException("Error getting properties file : " + propertiesFile, e);
