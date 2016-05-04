@@ -23,6 +23,7 @@ class ArgumentsParser {
     private static final String APPLICATION_PORT_OPTION = "appPort";
     private static final String WORKER_THREADS_OPTION = "workerThreads";
     private static final String DATA_FOLDER_OPTION = "dataFolder";
+    private static final String PROPERTIES_FILE_OPTION = "propertiesFile";
 
     static  {
         options = new Options();
@@ -30,6 +31,7 @@ class ArgumentsParser {
                .addOption(APPLICATION_PORT_OPTION, true, "Application server port.")
                .addOption(WORKER_THREADS_OPTION, true, "Server worker threads.")
                .addOption(DATA_FOLDER_OPTION, true, "Folder where user profiles will be stored.");
+               .addOption(PROPERTIES_FILE_OPTION, true, "Location of server.properties is stored.");
     }
 
     /**
@@ -46,6 +48,7 @@ class ArgumentsParser {
         String appPort = cmd.getOptionValue(APPLICATION_PORT_OPTION);
         String workerThreadsString = cmd.getOptionValue(WORKER_THREADS_OPTION);
         String dataFolder = cmd.getOptionValue(DATA_FOLDER_OPTION);
+        String propertiesFile = cmd.getOptionValue(PROPERTIES_FILE_OPTION,);
 
         if (hardPort != null) {
             ParseUtil.parseInt(hardPort);
@@ -61,6 +64,18 @@ class ArgumentsParser {
         }
         if (dataFolder != null) {
             serverProperties.put("data.folder", dataFolder);
+        }
+        if (propertiesFile != null) {
+            Path augDirPath = Paths.get(propertiesFile);
+            if (Files.exists(augDirPath)) {
+                try (InputStream augFolder = Files.newInputStream(augDirPath)) {
+                    if (augFolder != null) {
+                        load(augFolder);
+                    }
+                } catch (Exception e) {
+                    throw new RuntimeException("Error getting properties file : " + propertiesFile, e);
+                }
+            }
         }
     }
 
