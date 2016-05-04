@@ -74,9 +74,9 @@ class ArgumentsParser {
         if (propertiesFile != null) {
             Path augDirPath = Paths.get(propertiesFile);
             if (Files.exists(augDirPath)) {
-                try (InputStream augFolder = new Files.newInputStream(augDirPath)) {
+                try (InputStream augFolder = Files.newInputStream(augDirPath)) {
                     if (augFolder != null) {
-                        load(augFolder);
+                        FileLoaderUtil.load(augFolder);
                     }
                 } catch (Exception e) {
                     throw new RuntimeException("Error getting properties file : " + propertiesFile, e);
